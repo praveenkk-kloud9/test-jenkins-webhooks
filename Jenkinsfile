@@ -10,7 +10,7 @@ node {
   
   stage ("Cleanup") {
     echo "The Cleanup Stage completed Successfully"
-    sleep 20
+    sleep 10
     echo "exiting the loop now"
   }
 }
