@@ -12,10 +12,15 @@ node {
   try {
   stage ("Code Pickup") {
   checkout scm
-  setBuildStatus("Code Pickup Succeeded", "SUCCESS",scm); 
+//  setBuildStatus("Code Pickup Succeeded", "SUCCESS",scm); 
+    sh 'curl -XPOST -H \"Authorization: token 8661d657970168d8e1ffe64555662cb1c2553673\" https://api.github.com/repos/:organization/:repos/statuses/$(git rev-parse HEAD) -d \"{
+  \"state\": \"success\",
+  \"target_url\": \"${BUILD_URL}\",
+  \"description\": \"The build has succeeded!\"
+}\"'
   }
   } catch(e) {
-    setBuildStatus(e, "FAILURE",scm); 
+//    setBuildStatus(e, "FAILURE",scm); 
     throw e
   }
   
@@ -24,9 +29,9 @@ node {
     sh "python3 python.py"
     echo "The build Stage completed Successfully"
   }
-  setBuildStatus("Code Build Succeeded", "SUCCESS",scm); 
+//  setBuildStatus("Code Build Succeeded", "SUCCESS",scm); 
   }catch(e) {
-    setBuildStatus(e, "FAILURE",scm); 
+//    setBuildStatus(e, "FAILURE",scm); 
     throw e
   }
 
@@ -34,9 +39,9 @@ node {
   stage ("Publish") {
     echo "The Publish Stage completed Successfully"
   }
-  setBuildStatus("Code Publish Succeeded", "SUCCESS",scm); 
+//  setBuildStatus("Code Publish Succeeded", "SUCCESS",scm); 
   } catch(e) {
-   setBuildStatus(e, "FAILURE",scm);
+//   setBuildStatus(e, "FAILURE",scm);
     throw e
   }
 
@@ -46,9 +51,9 @@ node {
     sleep 10
     echo "exiting the loop now"
   }
-   setBuildStatus("Code Cleanup Succeeded", "SUCCESS",scm);
+//   setBuildStatus("Code Cleanup Succeeded", "SUCCESS",scm);
   } catch(e) {
-   setBuildStatus(e, "FAILURE",scm);
+//   setBuildStatus(e, "FAILURE",scm);
     throw e
   }
 }
