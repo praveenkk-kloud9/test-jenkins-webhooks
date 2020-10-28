@@ -9,9 +9,11 @@ def IsOdd(n):
 class IsOddTests(unittest.TestCase):
 
     def testOne(self):
+        print("Hello")
         self.failUnless(IsOdd(1))
 
     def testTwo(self):
+        print("World!")
         self.failIf(IsOdd(2))
 
 def main():
