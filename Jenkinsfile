@@ -1,6 +1,6 @@
 node {
   stage ("Build") {
-    sh "python3 tester.py"
+    sh "python3 python.py"
     echo "The build Stage completed Successfully"
   }
   
