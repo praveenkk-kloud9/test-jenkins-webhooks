@@ -1,0 +1,14 @@
+node {
+  stage ("Build") {
+    sh "python3 tester.py"
+    echo "The build Stage completed Successfully"
+  }
+  
+  stage ("Publish") {
+    echo "The Publish Stage completed Successfully"
+  }
+  
+  stage ("Cleanup") {
+    echo "The Cleanup Stage completed Successfully"
+  }
+}
