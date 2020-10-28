@@ -11,6 +11,6 @@ node {
   stage ("Cleanup") {
     echo "The Cleanup Stage completed Successfully"
     sleep 10
-    echo "exiting the loop"
+    echo "exiting the loop now"
   }
 }
