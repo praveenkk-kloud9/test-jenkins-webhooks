@@ -8,6 +8,8 @@ void setBuildStatus(String message, String state , String scm) {
   ]);
 }
 
+def CatchTrigger = False
+try {
 node {
   stage ("Code Pickup") {
   checkout scm
@@ -28,12 +30,13 @@ node {
     sleep 10
     echo "exiting the loop now"
   }
-  post {
-    success {
-            setBuildStatus("Build succeeded", "SUCCESS");
-    }
-    failure {
-            setBuildStatus("Build failed", "FAILURE");
-    }
+}
+} catch (exception e) {
+      catchTrigger = True
+} finally {
+  if ( catchTrigger) {
+          setBuildStatus("Build Failed", "FAILURE");
+  } else {
+          setBuildStatus("Build succeeded", "SUCCESS");
   }
 }
