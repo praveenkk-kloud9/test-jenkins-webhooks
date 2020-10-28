@@ -31,7 +31,7 @@ node {
     echo "exiting the loop now"
   }
 }
-} catch (exception e) {
+} catch(all) {
       catchTrigger = True
 } finally {
   if ( catchTrigger) {
