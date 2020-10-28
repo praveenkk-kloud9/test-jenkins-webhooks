@@ -1,4 +1,8 @@
 node {
+  stage ("Code Pickup") {
+  checkout scm
+  }
+  
   stage ("Build") {
     sh "python3 python.py"
     echo "The build Stage completed Successfully"
