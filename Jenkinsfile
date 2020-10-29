@@ -13,11 +13,6 @@ node {
   stage ("Code Pickup") {
   checkout scm
 //  setBuildStatus("Code Pickup Succeeded", "SUCCESS",scm); 
-    sh 'curl -XPOST -H \"Authorization: token 8661d657970168d8e1ffe64555662cb1c2553673\" https://api.github.com/repos/:organization/:repos/statuses/$(git rev-parse HEAD) -d \"{
-  \"state\": \"success\",
-  \"target_url\": \"${BUILD_URL}\",
-  \"description\": \"The build has succeeded!\"
-}\"'
   }
   } catch(e) {
 //    setBuildStatus(e, "FAILURE",scm); 
